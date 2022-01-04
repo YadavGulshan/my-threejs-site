@@ -1,4 +1,6 @@
 "use strict";
+// import gsap from "gsap";
+// import THREE from "three";
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 const renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -13,26 +15,36 @@ window.addEventListener('resize', function () {
     camera.updateProjectionMatrix();
 });
 document.body.appendChild(renderer.domElement);
-const geometry = new THREE.BoxGeometry(1, 1, 1);
-const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+const geometry = new THREE.BoxGeometry(1, 0.5, 1);
+const material = new THREE.MeshLambertMaterial({ color: 0xFFCC00 });
 //  Mesh info
 //  What is a mesh?
 //  A mesh is a 3D object that is made up of vertices, faces, and edges.
-const cube = new THREE.Mesh(geometry, material);
-// Add cube into the scene
-scene.add(cube);
+const mesh = new THREE.Mesh(geometry, material);
+// Add mesh into the scene
+scene.add(mesh);
 // Camera info
 // What is a camera?
 // A camera is a device that can be used to view a scene.
 camera.position.z = 5;
+// Adding lights
+const light = new THREE.PointLight(0xFFFFFF, 1, 500);
+light.position.set(10, 10, 10);
+scene.add(light);
 // Lets animate the cube
 function animate() {
+    // Request animation frame
+    // This is a method that is provided by the browser
+    // It will call the animate function again at the next frame
+    // This is how we keep the animation running
+    // The browser will call the animate function 60 times per second
     requestAnimationFrame(animate);
-    // cube.rotation.x += 0.1;
-    // //  or
-    cube.rotateX(0.1);
-    cube.rotateY(0.1);
+    mesh.rotateX(0.1);
+    mesh.rotateY(0.1);
     // Render the scene
     renderer.render(scene, camera);
 }
+this.t1 = TimelineMax({ repeat: -1 });
+// t1.to(mesh.scale,1,{x:1.5, y:1.5, z:1.5, ease: "power1.inOut"});
+// t1.duration()
 animate();
