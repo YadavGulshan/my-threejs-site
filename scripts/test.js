@@ -6,7 +6,7 @@ const renderer = new THREE.WebGLRenderer({ antialias: true });
 // Camera info
 // What is a camera?
 // A camera is a device that can be used to view a scene.
-camera.position.z = 5;
+camera.position.z = 10;
 
 renderer.setSize(window.innerWidth, window.innerHeight);
 
@@ -34,12 +34,17 @@ const material = new THREE.MeshLambertMaterial({ color: '#673AB7' });
 //  What is a mesh?
 //  A mesh is a 3D object that is made up of vertices, faces, and edges.
 // const mesh = new THREE.Mesh(geometry, material);
-meshX = -10
-for (var i = 0; i < 25; i++) {
+var meshX = -10
+for (var i = 0; i < 20; i++) {
     var mesh = new THREE.Mesh(geometry, material);
     mesh.position.x = (Math.random() - 0.5) * 10
     mesh.position.y = (Math.random() - 0.5) * 10
     mesh.position.z = (Math.random() - 0.5) * 10
+
+    // Random rotation
+    mesh.rotation.x = Math.random() * 2 * Math.PI;
+    mesh.rotation.y = Math.random() * 2 * Math.PI;
+    mesh.rotation.z = Math.random() * 2 * Math.PI;
 
     scene.add(mesh);
     meshX += 1;
