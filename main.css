@@ -1,0 +1,18 @@
+h1 {
+    position: absolute;
+    top: 2em;
+    left: 2em;
+    font-family: 'Montserrat';
+    font-size: 4em;
+    text-transform: uppercase;
+    width: auto;
+    line-height: .8em;
+    border: 5px solid black;
+    padding: .2em;
+}
+
+@media only screen and (max-width:768px) {
+    h1 {
+        font-size: 2em;
+    }
+}

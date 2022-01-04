@@ -42,9 +42,9 @@ for (var i = 0; i < 20; i++) {
     mesh.position.z = (Math.random() - 0.5) * 10
 
     // Random rotation
-    mesh.rotation.x = Math.random() * 2 * Math.PI;
-    mesh.rotation.y = Math.random() * 2 * Math.PI;
-    mesh.rotation.z = Math.random() * 2 * Math.PI;
+    // mesh.rotation.x = Math.random() * 2 * Math.PI;
+    // mesh.rotation.y = Math.random() * 2 * Math.PI;
+    // mesh.rotation.z = Math.random() * 2 * Math.PI;
 
     scene.add(mesh);
     meshX += 1;
@@ -53,7 +53,7 @@ for (var i = 0; i < 20; i++) {
 
 // Add mesh into the scene
 // scene.add(mesh);
-scene.add(meshX);
+// scene.add(meshX);
 
 
 

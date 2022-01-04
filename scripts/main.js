@@ -15,28 +15,32 @@ window.addEventListener('resize', function () {
     camera.updateProjectionMatrix();
 });
 document.body.appendChild(renderer.domElement);
+// Raycaster to detect mouse position
+const raycaster = new THREE.Raycaster();
+const mouse = new THREE.Vector2();
 const geometry = new THREE.BoxGeometry(1, 0.5, 1);
 const material = new THREE.MeshLambertMaterial({ color: '#673AB7' });
 //  Mesh info
 //  What is a mesh?
 //  A mesh is a 3D object that is made up of vertices, faces, and edges.
 var meshX = -10;
-for (var i = 0; i < 20; i++) {
+for (var i = 0; i < 25; i++) {
     var mesh = new THREE.Mesh(geometry, material);
     // Random position
     mesh.position.x = (Math.random() - 0.5) * 20;
     mesh.position.y = (Math.random() - 0.5) * 20;
     mesh.position.z = (Math.random() - 0.5) * 20;
     // Random rotation
-    mesh.rotation.x = Math.random() * 2 * Math.PI;
-    mesh.rotation.y = Math.random() * 2 * Math.PI;
-    mesh.rotation.z = Math.random() * 2 * Math.PI;
+    // mesh.rotation.x = Math.random() * 2 * Math.PI;
+    // mesh.rotation.y = Math.random() * 2 * Math.PI;
+    // mesh.rotation.z = Math.random() * 2 * Math.PI;
     scene.add(mesh);
-    meshX += 10;
+    meshX += 1;
 }
 // const mesh = new THREE.Mesh(geometry, material);
 // Add mesh into the scene
-scene.add(mesh);
+// Add the meshX as a 3d object into the scene
+// scene.add(meshX);
 // Camera info
 // What is a camera?
 // A camera is a device that can be used to view a scene.
@@ -62,7 +66,17 @@ function animate() {
     // Render the scene
     renderer.render(scene, camera);
 }
-// this.t1 = TimelineMax({ repeat: -1 });
-// t1.to(mesh.scale,1,{x:1.5, y:1.5, z:1.5, ease: "power1.inOut"});
-// t1.duration()
+function onMouseMove(event) {
+    event.preventDefault();
+    // Update the mouse variable
+    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse.y = (event.clientY / window.innerHeight) * 2 + 1;
+    raycaster.setFromCamera(mouse, camera);
+    var intersects = raycaster.intersectObjects(scene.children, true);
+    for (var i = 0; i < intersects.length; i++) {
+        // this.tl = ;
+        this.tl.to(intersects[i].object.position, 1, { x: 0, y: 0, z: 0 });
+    }
+}
+window.addEventListener('mousemove', onMouseMove);
 animate();
