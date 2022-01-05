@@ -10,11 +10,10 @@ camera.position.z = 10;
 renderer.setSize(window.innerWidth, window.innerHeight);
 
 // Set the background color of the scene
-// renderer.setClearColor("#000000", 1);
+renderer.setClearColor("#00000", 1);
 
-// document.body.appendChild(renderer.domElement);
-// set this threejs object as a background of the html page
-document.getElementById('left').appendChild(renderer.domElement);
+document.body.appendChild(renderer.domElement);
+
 
 // Setting up responsive canvas
 window.addEventListener('resize', () => {
@@ -94,8 +93,15 @@ const animate = () => {
     scene.children.forEach(child => {
         child.rotation.y += 0.01;
         child.rotation.x += 0.01;
-    })
 
+        // Move the child from start to end and back with small easing and random speed
+        TweenMax.to(child.position, Math.random() * 2, {
+            x: Math.random() * 20 - 10,
+            y: Math.random() * 20 - 10,
+            z: Math.random() * 20 - 10,
+            ease: Power2.easeInOut
+        });
+    })
 }
 
 
@@ -129,3 +135,6 @@ function onMouseMove(event) {
 
 window.addEventListener('mousemove', onMouseMove)
 animate();
+
+// Set this canvas as the background of the page
+// document.body.style.background = `url(${renderer.domElement.toDataURL()})`;
