@@ -1,4 +1,7 @@
-h1 {
+.name-div {
+    display: flex;
+    flex-wrap: wrap;
+    width: 45%;
     position: absolute;
     top: 2em;
     right: 2em;
@@ -13,9 +16,9 @@ h1 {
 }
 
 @media only screen and (max-width:786px) {
-    h1 {
-        font-size: 2.25rem;
-        line-height: 2.5rem;
+    .name-div {
+        font-size: 3rem;
+        line-height: 1;
     }
 }
 
