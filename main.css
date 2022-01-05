@@ -1,18 +1,26 @@
 h1 {
     position: absolute;
     top: 2em;
-    left: 2em;
+    right: 2em;
     font-family: 'Montserrat';
-    font-size: 4em;
-    text-transform: uppercase;
-    width: auto;
-    line-height: .8em;
-    border: 5px solid black;
+    font-size: 6rem;
+    line-height: 1;
+    /* border: 5px solid black; */
     padding: .2em;
+    color: aliceblue;
+    -webkit-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto;
 }
 
-@media only screen and (max-width:768px) {
+@media only screen and (max-width:786px) {
     h1 {
-        font-size: 2em;
+        font-size: 2.25rem;
+        line-height: 2.5rem;
     }
+}
+
+p {
+    position: absolute;
+    top: 15em;
+    left: 2em;
 }

@@ -11,7 +11,7 @@ camera.position.z = 10;
 renderer.setSize(window.innerWidth, window.innerHeight);
 
 // Set the background color of the scene
-renderer.setClearColor("#e6e6e6", 1);
+renderer.setClearColor("#000000", 1);
 
 document.body.appendChild(renderer.domElement);
 
@@ -28,16 +28,16 @@ const raycaster = new THREE.Raycaster();
 const mouse = new THREE.Vector2();
 
 const geometry = new THREE.BoxGeometry(1, 1, 1);
-const material = new THREE.MeshLambertMaterial({ color: '#673AB7' });
+const material = new THREE.MeshLambertMaterial({ color: '#16EFFF' });
 
 //  Mesh info
 //  What is a mesh?
 //  A mesh is a 3D object that is made up of vertices, faces, and edges.
 // const mesh = new THREE.Mesh(geometry, material);
 var meshX = -10
-for (var i = 0; i < 20; i++) {
+for (var i = 0; i < 200; i++) {
     var mesh = new THREE.Mesh(geometry, material);
-    mesh.position.x = (Math.random() - 0.5) * 10
+    mesh.position.x = (Math.random() - 1.5) * 10
     mesh.position.y = (Math.random() - 0.5) * 10
     mesh.position.z = (Math.random() - 0.5) * 10
 
@@ -57,19 +57,14 @@ for (var i = 0; i < 20; i++) {
 
 
 
-// Adding lights
-const light = new THREE.PointLight(0xFFFFFF, 1, 1000);
-light.position.set(0, 0, 0);
+// Lights with random positions 
+const light = new THREE.PointLight('#16EFFF', 1, 100);
+light.position.set(Math.random() * 20 - 10, Math.random() * 20 - 10, Math.random() * 20 - 10);
 scene.add(light);
 
-const light2 = new THREE.PointLight(0xFFFFFF, 2, 1000);
-light.position.set(0, 0, 25);
-scene.add(light2);
-
-
-const light3 = new THREE.PointLight(0xFFFFFF, 3, 1000);
-light.position.set(0, 0, 25);
-scene.add(light3);
+const light2 = new THREE.PointLight('#fffff', 1, 100);
+light2.position.set(0, 0, 5);
+scene.add(light2)
 
 
 // Lets animate the cube
@@ -85,6 +80,13 @@ const animate = () => {
     // mesh.rotateY(0.1)
     // Render the scene
     renderer.render(scene, camera);
+
+    // Bounce all the meshes in the scene
+    scene.children.forEach(child => {
+        child.rotation.y += 0.01;
+        child.rotation.x += 0.01;
+    })
+
 }
 
 
@@ -105,8 +107,20 @@ function onMouseMove(event) {
         this.tl.to(intersects[i].object.scale, 1, { x: Math.floor(Math.random() * 2) - 1, ease: Expo.easeOut })
         this.tl.to(intersects[i].object.scale, .5, { x: .5, ease: Expo.easeOut })
         this.tl.to(intersects[i].object.position, .5, { x: Math.floor(Math.random() * 2) - 1, ease: Expo.easeOut })
-        this.tl.to(intersects[i].object.rotation, .5, { y: Math.PI * .5, ease: Expo.easeOut }, "=-1.5")
+        this.tl.to(intersects[i].object.rotation, .5, { y: Math.PI * 1, ease: Expo.easeOut }, "=-1.5")
+
+        // Get back to original position after 1 second
+        this.tl.to(intersects[i].object.position, .5, { x: 0, ease: Expo.easeOut }, "=-1")
     }
+
+    // Rotate the camera according to the mouse position
+    // camera.rotation.x = -mouse.y * Math.PI / 2;
+    // camera.rotation.y = -mouse.x * Math.PI / 2;
+
+    // change color of the cube
+    mesh.material.color.set(Math.random() * 0xffffff);
+
+
 }
 window.addEventListener('mousemove', onMouseMove)
 animate();
