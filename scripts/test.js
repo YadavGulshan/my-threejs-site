@@ -2,7 +2,6 @@ const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 
-
 // Camera info
 // What is a camera?
 // A camera is a device that can be used to view a scene.
@@ -11,9 +10,11 @@ camera.position.z = 10;
 renderer.setSize(window.innerWidth, window.innerHeight);
 
 // Set the background color of the scene
-renderer.setClearColor("#000000", 1);
+// renderer.setClearColor("#000000", 1);
 
-document.body.appendChild(renderer.domElement);
+// document.body.appendChild(renderer.domElement);
+// set this threejs object as a background of the html page
+document.getElementById('left').appendChild(renderer.domElement);
 
 // Setting up responsive canvas
 window.addEventListener('resize', () => {
@@ -28,7 +29,8 @@ const raycaster = new THREE.Raycaster();
 const mouse = new THREE.Vector2();
 
 // A circle geometry
-const geometry = new THREE.CircleGeometry(1, 5);
+const geometry = new THREE.CircleGeometry(1, 6);
+
 
 const material = new THREE.MeshLambertMaterial({ color: '#16EFFF' });
 
@@ -37,7 +39,7 @@ const material = new THREE.MeshLambertMaterial({ color: '#16EFFF' });
 //  A mesh is a 3D object that is made up of vertices, faces, and edges.
 // const mesh = new THREE.Mesh(geometry, material);
 var meshX = -10
-for (var i = 0; i < 200; i++) {
+for (var i = 0; i < 100; i++) {
     var mesh = new THREE.Mesh(geometry, material);
     mesh.position.x = (Math.random() - 1.5) * 10
     mesh.position.y = (Math.random() - 0.5) * 10
@@ -123,7 +125,7 @@ function onMouseMove(event) {
 
     // change color of the cube
     mesh.material.color.set(Math.random() * 0xffffff);
-
 }
+
 window.addEventListener('mousemove', onMouseMove)
 animate();

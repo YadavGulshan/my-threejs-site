@@ -1,29 +1,83 @@
-.name-div {
-    display: flex;
-    flex-wrap: wrap;
-    width: 45%;
-    position: absolute;
-    top: 2em;
-    right: 2em;
-    font-family: 'Montserrat';
-    font-size: 6rem;
-    line-height: 1;
-    /* border: 5px solid black; */
-    padding: .2em;
-    color: aliceblue;
-    -webkit-font-smoothing: auto;
-    -moz-osx-font-smoothing: auto;
-}
-
-@media only screen and (max-width:786px) {
-    .name-div {
-        font-size: 3rem;
-        line-height: 1;
-    }
-}
-
-p {
-    position: absolute;
-    top: 15em;
-    left: 2em;
-}
+ /* Hide scrollbar for Chrome, Safari and Opera */
+ 
+ html::-webkit-scrollbar {
+     display: none;
+ }
+ /* Hide scrollbar for IE, Edge and Firefox */
+ 
+ html {
+     -ms-overflow-style: none;
+     /* IE and Edge */
+     scrollbar-width: none;
+     /* Firefox */
+     background-color: #000000;
+     color: aliceblue;
+ }
+ 
+ .home {
+     display: flex;
+     flex-direction: row;
+ }
+ 
+ .right {
+     display: flex;
+     flex-direction: column;
+ }
+ 
+ .name-div {
+     display: flex;
+     flex-wrap: wrap;
+     width: 45%;
+     position: absolute;
+     top: 2em;
+     right: 2em;
+     font-family: 'Montserrat';
+     font-size: 6rem;
+     line-height: 1;
+     /* border: 5px solid black; */
+     padding: .2em;
+     color: aliceblue;
+     -webkit-font-smoothing: auto;
+     -moz-osx-font-smoothing: auto;
+     flex-direction: column;
+ }
+ 
+ .calltoaction {
+     margin-top: 1rem;
+     font-size: 2rem;
+     width: 15rem;
+ }
+ 
+ .container {
+     display: flex;
+     flex-wrap: wrap;
+     width: 100%;
+     height: 100%;
+     justify-content: center;
+     align-items: center;
+     flex-direction: row;
+     height: 50vh;
+     gap: 8rem;
+ }
+ 
+ .blocks {
+     border: solid;
+     width: 15rem;
+     height: 15rem;
+     display: flex;
+     justify-content: center;
+     border-radius: 15px 50px;
+ }
+ 
+ @media only screen and (max-width:786px) {
+     .name-div {
+         font-size: 3rem;
+         line-height: 1;
+     }
+ }
+ 
+ p {
+     position: absolute;
+     top: 15em;
+     left: 2em;
+ }
