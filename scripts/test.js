@@ -27,7 +27,9 @@ window.addEventListener('resize', () => {
 const raycaster = new THREE.Raycaster();
 const mouse = new THREE.Vector2();
 
-const geometry = new THREE.BoxGeometry(1, 1, 1);
+// A circle geometry
+const geometry = new THREE.CircleGeometry(1, 5);
+
 const material = new THREE.MeshLambertMaterial({ color: '#16EFFF' });
 
 //  Mesh info
@@ -41,10 +43,11 @@ for (var i = 0; i < 200; i++) {
     mesh.position.y = (Math.random() - 0.5) * 10
     mesh.position.z = (Math.random() - 0.5) * 10
 
+
     // Random rotation
-    // mesh.rotation.x = Math.random() * 2 * Math.PI;
-    // mesh.rotation.y = Math.random() * 2 * Math.PI;
-    // mesh.rotation.z = Math.random() * 2 * Math.PI;
+    mesh.rotation.x = Math.random() * 2 * Math.PI;
+    mesh.rotation.y = Math.random() * 2 * Math.PI;
+    mesh.rotation.z = Math.random() * 2 * Math.PI;
 
     scene.add(mesh);
     meshX += 1;
@@ -65,6 +68,10 @@ scene.add(light);
 const light2 = new THREE.PointLight('#fffff', 1, 100);
 light2.position.set(0, 0, 5);
 scene.add(light2)
+
+const light3 = new THREE.PointLight('#fffff', 1, 100);
+light3.position.set(0, 5, 10);
+scene.add(light3)
 
 
 // Lets animate the cube
@@ -108,9 +115,6 @@ function onMouseMove(event) {
         this.tl.to(intersects[i].object.scale, .5, { x: .5, ease: Expo.easeOut })
         this.tl.to(intersects[i].object.position, .5, { x: Math.floor(Math.random() * 2) - 1, ease: Expo.easeOut })
         this.tl.to(intersects[i].object.rotation, .5, { y: Math.PI * 1, ease: Expo.easeOut }, "=-1.5")
-
-        // Get back to original position after 1 second
-        this.tl.to(intersects[i].object.position, .5, { x: 0, ease: Expo.easeOut }, "=-1")
     }
 
     // Rotate the camera according to the mouse position
@@ -119,7 +123,6 @@ function onMouseMove(event) {
 
     // change color of the cube
     mesh.material.color.set(Math.random() * 0xffffff);
-
 
 }
 window.addEventListener('mousemove', onMouseMove)
